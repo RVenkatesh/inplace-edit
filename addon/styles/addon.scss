@@ -1,0 +1,92 @@
+@import "compass/css3";
+
+.inplace-edit {
+  $input-padding: 5px;
+  $border-size: 1px;
+  $border-color: #e9e9e9;
+
+  border: $border-size solid transparent;
+  position: relative;
+  display: inline-block;
+  input {
+    @include transition(padding .2s .3s, font-size .3s);
+    font-size: 14px;
+    line-height: normal;
+    background: transparent;
+    padding: $input-padding;
+    padding-left: 0;
+    height: auto;
+    width: 100%;
+    border-color: transparent;
+    border-radius: 0;
+  }
+  &:not(.disabled):hover {
+    .border.bottom {
+      @include transition(.2s ease all);
+      width: 100%;
+    }
+  }
+  &.focus {
+    @include transition(border 0s .4s);
+    // background-color: #f9f9f9;
+    border: $border-size solid $border-color;
+    border-radius: 6px;
+    input {
+      // font-size: 12px;
+      padding-left: $input-padding;
+    }
+    .border {
+      visibility: hidden;
+      &.top {
+        @include transition(.1s .2s ease all, visibility 0s .4s);
+        width: 100%;
+      }
+      &.right {
+        @include transition(.1s .1s ease all, visibility 0s .4s);
+        height: 100%;
+      }
+      &.bottom {
+        @include transition(.1s ease all, visibility 0s .4s);
+        width: 100%;
+      }
+      &.left {
+        @include transition(.1s .3s ease all, visibility 0s .4s);
+        height: 100%;
+      }
+    }
+  }
+  .border {
+    background: #bbb;
+    visibility: visible;
+    position: absolute;
+    z-index: 999;
+    &.top {
+      @include transition(.1s .1s ease all, visibility 0s);
+      width: 0;
+      height: $border-size;
+      top: 0;
+      right: 0;
+    }
+    &.right {
+      @include transition(.1s .2s ease all, visibility 0s);
+      width: $border-size;
+      height: 0px;
+      right: 0;
+      bottom: 0;
+    }
+    &.bottom {
+      @include transition(.1s .3s ease all, visibility 0s);
+      width: 0;
+      height: $border-size;
+      bottom: 0;
+      left: 0;
+    }
+    &.left {
+      @include transition(.1s ease all, visibility 0s);
+      width: $border-size;
+      height: 0px;
+      left: 0;
+      top: 0;
+    }
+  }
+}
